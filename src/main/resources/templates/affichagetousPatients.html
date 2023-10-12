@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PATIENTS</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<table border="1">
+    <th>NSS</th>
+    <th>NOM</th>
+    <th>PRENOM</th>
+    <th>DATE NAISSANCE</th>
+    <th></th>
+    <tr th:each="patient : ${patients}">
+        <td th:text="${patient.nss}"/>
+        <td th:text="${patient.nom}"/>
+        <td th:text="${patient.prenom}"/>
+        <td th:text="${patient.dateNaissance}"/>
+        <td><a th:href="${'./selection?numPatient=' + patient.id}">Voir</a></td>
+    </tr>
+</table>
+</body>
+</html>

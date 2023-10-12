@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>PATIENTS</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<table border="1">
+    <th>NSS</th>
+    <th>NOM</th>
+    <th>PRENOM</th>
+    <th>DATE NAISSANCE</th>
+    <tr>
+        <td th:text="${patient.nss}"/>
+        <td th:text="${patient.nom}"/>
+        <td th:text="${patient.prenom}"/>
+        <td th:text="${patient.dateNaissance}"/>
+    </tr>
+</table>
+
+<table border="1">
+    <th>ID PRESCRIPTION</th>
+    <th>date</th>
+    <th>medecin</th>
+    <th>medicament</th>
+    <tr th:each="prescription : ${patient.prescription}">
+        <td th:text="${prescription.id}"/>
+        <td th:text="${prescription.datePrescription}"/>
+        <td th:text="${prescription.medecin.nom}"/>
+
+        <td>
+            <span th:each="info : ${prescription.infos}">
+                <span th:text="${info.quantite}"></span>
+                <span th:text="${info.medicament.nom}"></span>
+                <br>
+            </span>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
