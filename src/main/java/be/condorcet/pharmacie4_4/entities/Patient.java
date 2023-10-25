@@ -1,5 +1,6 @@
 package be.condorcet.pharmacie4_4.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,7 +18,6 @@ import java.util.List;
 public class Patient {
 
     @Id
-    @NonNull
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "patient_generator")
     @SequenceGenerator(name = "patient_generator", sequenceName = "APIPATIENT_SEQ", allocationSize = 1)
     @Column(name = "id_patient")
@@ -32,7 +32,8 @@ public class Patient {
     @NonNull @Column(name = "DATENAISSANCE")
     private LocalDate dateNaissance;
 
-    @OneToMany @JoinColumn(name = "ID_PATIENT")
+    @JsonIgnore
+    @OneToMany(mappedBy = "patient") /*@JoinColumn(name = "ID_PATIENT")*/
     @ToString.Exclude
     private List<Prescription> prescription = new ArrayList<>();
 }

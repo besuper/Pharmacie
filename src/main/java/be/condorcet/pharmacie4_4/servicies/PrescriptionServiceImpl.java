@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,5 +44,10 @@ public class PrescriptionServiceImpl implements InterfacePrescriptionService {
     @Override
     public List<Prescription> all() throws Exception {
         return prescriptionRepository.findAll();
+    }
+
+    @Override
+    public List<Prescription> readBetweenDates(LocalDate start, LocalDate end) {
+        return prescriptionRepository.findPrescriptionsByDatePrescriptionBetween(start, end);
     }
 }

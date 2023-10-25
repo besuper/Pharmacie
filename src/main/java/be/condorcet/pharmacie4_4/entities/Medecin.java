@@ -17,10 +17,9 @@ import java.util.Objects;
 public class Medecin {
 
     @Id
-    @NonNull
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "medecin_generator")
-    @SequenceGenerator(name = "medecin_generator", sequenceName = "APIMEDECIN_SEQ", allocationSize = 1)
-    @Column(name = "id_medecin")
+    @SequenceGenerator(name = "medecin_generator", sequenceName = "APIMEDECIN_SEQ1", allocationSize = 1)
+    @Column(name = "ID_MEDECIN")
     private Integer id;
 
     @NonNull
