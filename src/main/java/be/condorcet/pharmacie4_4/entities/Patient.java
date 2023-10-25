@@ -33,5 +33,6 @@ public class Patient {
     private LocalDate dateNaissance;
 
     @OneToMany @JoinColumn(name = "ID_PATIENT")
+    @ToString.Exclude
     private List<Prescription> prescription = new ArrayList<>();
 }

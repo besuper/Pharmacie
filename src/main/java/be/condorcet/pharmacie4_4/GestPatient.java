@@ -2,6 +2,7 @@ package be.condorcet.pharmacie4_4;
 
 import be.condorcet.pharmacie4_4.entities.Patient;
 import be.condorcet.pharmacie4_4.repositories.PatientRepository;
+import be.condorcet.pharmacie4_4.servicies.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,14 +17,14 @@ import java.util.Optional;
 public class GestPatient {
 
     @Autowired
-    PatientRepository patientRepository;
+    PatientServiceImpl patientService;
 
     @RequestMapping("/tous")
     public String affTous(Map<String, Object> model) {
         List<Patient> liste;
 
         try {
-            liste = patientRepository.findAll();
+            liste = patientService.all();
             model.put("patients", liste);
 
         } catch (Exception e) {
@@ -36,18 +37,12 @@ public class GestPatient {
 
     @RequestMapping("/selection")
     public String selection(@RequestParam("numPatient") int numPatient, Map<String, Object> model) {
-        Optional<Patient> patient;
+        Patient patient;
 
         try {
-            patient = patientRepository.findById(numPatient);
+            patient = patientService.read(numPatient);
 
-            if (patient.isEmpty()) {
-                throw new Exception("patient inconnu");
-            }
-
-            patient.ifPresent((patient_) -> {
-                model.put("patient", patient_);
-            });
+            model.put("patient", patient);
         } catch (Exception e) {
             model.put("error", e.getMessage());
             System.out.println("erreur lors de la lecture " + e);
@@ -58,18 +53,12 @@ public class GestPatient {
 
     @RequestMapping("/selectionName")
     public String selection(@RequestParam("name") String name, Map<String, Object> model) {
-        Optional<Patient> patient;
+        List<Patient> patient;
 
         try {
-            patient = patientRepository.findPatientByNom(name);
+            patient = patientService.read(name);
 
-            if (patient.isEmpty()) {
-                throw new Exception("patient inconnu");
-            }
-
-            patient.ifPresent((patient_) -> {
-                model.put("patient", patient_);
-            });
+            model.put("patient", patient.get(0));
         } catch (Exception e) {
             model.put("error", e.getMessage());
             System.out.println("erreur lors de la lecture " + e);
