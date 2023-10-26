@@ -112,17 +112,21 @@ class PatientServiceImplTest {
 
     @Test
     void rechercheNom() {
-        List<Patient> patients = patientService.read("NomTest");
-        boolean trouve = false;
+        try{
+            List<Patient> patients = patientService.read("NomTest");
+            boolean trouve = false;
 
-        for (Patient pat : patients) {
-            if (pat.getNom().startsWith("NomTest")) {
-                trouve = true;
-            } else {
-                fail("un record ne correspond pas , nom = " + pat.getNom());
+            for (Patient pat : patients) {
+                if (pat.getNom().startsWith("NomTest")) {
+                    trouve = true;
+                } else {
+                    fail("un record ne correspond pas , nom = " + pat.getNom());
+                }
             }
-        }
 
-        assertTrue(trouve, "record non trouvé dans la liste");
+            assertTrue(trouve, "record non trouvé dans la liste");
+        }catch (Exception e) {
+            fail("recherche infructueuse " + e);
+        }
     }
 }

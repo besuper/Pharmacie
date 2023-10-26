@@ -46,7 +46,7 @@ public class PatientServiceImpl implements InterfacePatientService {
     }
 
     @Override
-    public List<Patient> read(String nom) {
+    public List<Patient> read(String nom) throws Exception {
         return patientRepository.findPatientByNom(nom);
     }
 }

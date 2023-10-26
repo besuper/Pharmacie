@@ -129,9 +129,6 @@ class PrescriptionServiceImplTest {
             LocalDate start = LocalDate.now();
             LocalDate end = start.plusDays(1);
 
-            System.out.println(start);
-            System.out.println(end);
-
             List<Prescription> prescriptions = prescriptionService.readBetweenDates(start, end);
 
             assertNotEquals(0, prescriptions.size(), "la liste ne contient aucun élément");

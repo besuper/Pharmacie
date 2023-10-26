@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface PrescriptionRepository extends JpaRepository<Prescription, Integer> {
 
-    public List<Prescription> findPrescriptionsByDatePrescriptionBetween(LocalDate start, LocalDate end);
+    public List<Prescription> findPrescriptionsByDatePrescriptionBetween(LocalDate start, LocalDate end) throws Exception;
 
-    public List<Prescription> findPrescriptionsByPatient(Patient patient);
+    public List<Prescription> findPrescriptionsByPatient(Patient patient) throws Exception;
 
 }

@@ -8,8 +8,8 @@ import java.util.List;
 
 public interface InterfacePrescriptionService extends InterfaceService<Prescription> {
 
-    public List<Prescription> readBetweenDates(LocalDate start, LocalDate end);
+    public List<Prescription> readBetweenDates(LocalDate start, LocalDate end) throws Exception;
 
-    public List<Prescription> getPrescriptions(Patient patient);
+    public List<Prescription> getPrescriptions(Patient patient) throws Exception;
 
 }

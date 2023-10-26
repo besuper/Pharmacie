@@ -48,12 +48,12 @@ public class PrescriptionServiceImpl implements InterfacePrescriptionService {
     }
 
     @Override
-    public List<Prescription> readBetweenDates(LocalDate start, LocalDate end) {
+    public List<Prescription> readBetweenDates(LocalDate start, LocalDate end) throws Exception {
         return prescriptionRepository.findPrescriptionsByDatePrescriptionBetween(start, end);
     }
 
     @Override
-    public List<Prescription> getPrescriptions(Patient patient) {
+    public List<Prescription> getPrescriptions(Patient patient) throws Exception {
         return prescriptionRepository.findPrescriptionsByPatient(patient);
     }
 }

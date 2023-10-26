@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
 
-    public List<Patient> findPatientByNom(String nom);
+    public List<Patient> findPatientByNom(String nom) throws Exception;
 
 }
