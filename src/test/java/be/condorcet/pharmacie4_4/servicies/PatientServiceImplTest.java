@@ -106,7 +106,7 @@ class PatientServiceImplTest {
 
             assertNotEquals(0, patients.size(), "la liste ne contient aucun élément");
         } catch (Exception e) {
-            fail("erreur de recherche de tous les clients " + e);
+            fail("erreur de recherche de tous les patients " + e);
         }
     }
 

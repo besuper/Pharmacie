@@ -25,9 +25,9 @@ public class MedecinServiceImpl implements InterfaceMedecinService {
 
     @Override
     public Medecin read(Integer id) throws Exception {
-        Optional<Medecin> patient = medecinRepository.findById(id);
+        Optional<Medecin> medecin = medecinRepository.findById(id);
 
-        return patient.get();
+        return medecin.get();
     }
 
     @Override

@@ -119,7 +119,7 @@ class PrescriptionServiceImplTest {
 
             assertNotEquals(0, prescriptions.size(), "la liste ne contient aucun élément");
         } catch (Exception e) {
-            fail("erreur de recherche de tous les clients " + e);
+            fail("erreur de recherche de toute les prescriptions " + e);
         }
     }
 
@@ -136,7 +136,18 @@ class PrescriptionServiceImplTest {
 
             assertNotEquals(0, prescriptions.size(), "la liste ne contient aucun élément");
         } catch (Exception e) {
-            fail("erreur de recherche de tous les clients " + e);
+            fail("erreur de recherche de prescriptions par date " + e);
+        }
+    }
+
+    @Test
+    void getPrescriptionsPatient() {
+        try {
+            List<Prescription> prescriptions = prescriptionService.getPrescriptions(patient);
+
+            assertNotEquals(0, prescriptions.size(), "la liste ne contient aucun élément");
+        } catch (Exception e) {
+            fail("erreur de recherche des prescriptions du patient " + e);
         }
     }
 }

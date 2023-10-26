@@ -1,5 +1,6 @@
 package be.condorcet.pharmacie4_4.servicies;
 
+import be.condorcet.pharmacie4_4.entities.Patient;
 import be.condorcet.pharmacie4_4.entities.Prescription;
 import be.condorcet.pharmacie4_4.repositories.PrescriptionRepository;
 import jakarta.transaction.Transactional;
@@ -49,5 +50,10 @@ public class PrescriptionServiceImpl implements InterfacePrescriptionService {
     @Override
     public List<Prescription> readBetweenDates(LocalDate start, LocalDate end) {
         return prescriptionRepository.findPrescriptionsByDatePrescriptionBetween(start, end);
+    }
+
+    @Override
+    public List<Prescription> getPrescriptions(Patient patient) {
+        return prescriptionRepository.findPrescriptionsByPatient(patient);
     }
 }
