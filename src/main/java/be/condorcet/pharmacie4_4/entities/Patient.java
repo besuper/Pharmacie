@@ -33,7 +33,7 @@ public class Patient {
     private LocalDate dateNaissance;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "patient") /*@JoinColumn(name = "ID_PATIENT")*/
+    @OneToMany(mappedBy = "patient")
     @ToString.Exclude
     private List<Prescription> prescription = new ArrayList<>();
 }

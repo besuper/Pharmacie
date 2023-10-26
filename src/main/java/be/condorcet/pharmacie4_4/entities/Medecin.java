@@ -34,7 +34,7 @@ public class Medecin {
     @NonNull
     private String tel;
 
-    @OneToMany @JoinColumn(name = "ID_MEDECIN")
+    @OneToMany(mappedBy = "medecin")
     @ToString.Exclude
     private List<Prescription> prescription = new ArrayList<>();
 

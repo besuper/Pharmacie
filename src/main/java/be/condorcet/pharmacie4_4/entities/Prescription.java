@@ -36,7 +36,7 @@ public class Prescription {
     private Patient patient;
 
     @JsonIgnore
-    @OneToMany(mappedBy="prescription")/* @JoinColumn(name = "ID_PRESCRIPTION")*/
+    @OneToMany(mappedBy="prescription")
     @ToString.Exclude
     private List<Infos> infos = new ArrayList<>();
 }

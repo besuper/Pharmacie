@@ -28,8 +28,6 @@ public class Medicament {
     @NonNull
     private String description;
 
-    @NonNull
     @Column(name = "PRIXUNITAIRE")
     private double prixUnitaire;
-
 }

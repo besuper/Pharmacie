@@ -3,8 +3,6 @@ package be.condorcet.pharmacie4_4.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serializable;
-
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
@@ -12,16 +10,24 @@ import java.io.Serializable;
 @ToString
 @EqualsAndHashCode
 @Entity
-@IdClass(Infos.class)
 @Table(name = "APIINFOS", schema = "ORA5", catalog = "ORCL.CONDORCET.BE")
-public class Infos implements Serializable {
+public class Infos {
 
+    @EmbeddedId
     @NonNull
-    private int quantite;
+    private InfosKey id;
 
-    @Id @ManyToOne @JoinColumn(name = "ID_MEDICAMENT")
+    @ManyToOne
+    @NonNull
+    @MapsId("medicamentId")
+    @JoinColumn(name = "ID_MEDICAMENT")
     private Medicament medicament;
 
-    @Id @ManyToOne @JoinColumn(name = "ID_PRESCRIPTION")
+    @ManyToOne
+    @NonNull
+    @MapsId("prescriptionId")
+    @JoinColumn(name = "ID_PRESCRIPTION")
     private Prescription prescription;
+
+    private int quantite;
 }
