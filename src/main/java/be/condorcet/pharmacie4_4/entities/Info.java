@@ -11,11 +11,11 @@ import lombok.*;
 @EqualsAndHashCode
 @Entity
 @Table(name = "APIINFOS", schema = "ORA5", catalog = "ORCL.CONDORCET.BE")
-public class Infos {
+public class Info {
 
     @EmbeddedId
     @NonNull
-    private InfosKey id;
+    private InfoKey id;
 
     @ManyToOne
     @NonNull

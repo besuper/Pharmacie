@@ -1,5 +1,6 @@
 package be.condorcet.pharmacie4_4.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -25,6 +26,7 @@ public class Prescription {
 
     @NonNull
     @Column(name = "DATEPRESCRIPTION")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate datePrescription;
 
     @ManyToOne @JoinColumn(name = "ID_MEDECIN")
@@ -38,5 +40,5 @@ public class Prescription {
     @JsonIgnore
     @OneToMany(mappedBy="prescription")
     @ToString.Exclude
-    private List<Infos> infos = new ArrayList<>();
+    private List<Info> infos = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package be.condorcet.pharmacie4_4.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,7 +30,9 @@ public class Patient {
     private String nom;
     @NonNull
     private String prenom;
+
     @NonNull @Column(name = "DATENAISSANCE")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private LocalDate dateNaissance;
 
     @JsonIgnore

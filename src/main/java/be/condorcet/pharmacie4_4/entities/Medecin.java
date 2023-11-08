@@ -1,11 +1,11 @@
 package be.condorcet.pharmacie4_4.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Data
 @NoArgsConstructor
@@ -34,6 +34,7 @@ public class Medecin {
     @NonNull
     private String tel;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "medecin")
     @ToString.Exclude
     private List<Prescription> prescription = new ArrayList<>();

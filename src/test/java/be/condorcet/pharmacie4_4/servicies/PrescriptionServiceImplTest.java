@@ -3,13 +3,15 @@ package be.condorcet.pharmacie4_4.servicies;
 import be.condorcet.pharmacie4_4.entities.Medecin;
 import be.condorcet.pharmacie4_4.entities.Patient;
 import be.condorcet.pharmacie4_4.entities.Prescription;
+import be.condorcet.pharmacie4_4.servicies.medecin.MedecinServiceImpl;
+import be.condorcet.pharmacie4_4.servicies.patient.PatientServiceImpl;
+import be.condorcet.pharmacie4_4.servicies.prescription.PrescriptionServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,9 +1,8 @@
-package be.condorcet.pharmacie4_4.servicies;
+package be.condorcet.pharmacie4_4.servicies.medecin;
 
 import be.condorcet.pharmacie4_4.entities.Medecin;
-import be.condorcet.pharmacie4_4.entities.Patient;
 import be.condorcet.pharmacie4_4.repositories.MedecinRepository;
-import be.condorcet.pharmacie4_4.repositories.PatientRepository;
+import be.condorcet.pharmacie4_4.servicies.medecin.InterfaceMedecinService;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

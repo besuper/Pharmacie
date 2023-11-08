@@ -1,4 +1,4 @@
-package be.condorcet.pharmacie4_4.servicies;
+package be.condorcet.pharmacie4_4.servicies.patient;
 
 import be.condorcet.pharmacie4_4.entities.Patient;
 

@@ -1,7 +1,8 @@
-package be.condorcet.pharmacie4_4.servicies;
+package be.condorcet.pharmacie4_4.servicies.prescription;
 
 import be.condorcet.pharmacie4_4.entities.Patient;
 import be.condorcet.pharmacie4_4.entities.Prescription;
+import be.condorcet.pharmacie4_4.servicies.InterfaceService;
 
 import java.time.LocalDate;
 import java.util.List;
