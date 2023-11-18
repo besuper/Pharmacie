@@ -11,6 +11,25 @@
 			"item": [
 				{
 					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"patient créer\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(pm.response.json().id).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"id_patient\", jsonData.id);\r",
+									"postman.setEnvironmentVariable(\"nom_patient\", jsonData.nom);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -37,17 +56,30 @@
 				},
 				{
 					"name": "Read by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('patient trouvé ID',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/patients/101",
+							"raw": "{{url}}/patients/{{id_patient}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"patients",
-								"101"
+								"{{id_patient}}"
 							]
 						}
 					},
@@ -55,17 +87,30 @@
 				},
 				{
 					"name": "Ready by Nom",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('patient trouvé NOM',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/patients/nom=Brasseur",
+							"raw": "{{url}}/patients/nom={{nom_patient}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"patients",
-								"nom=Brasseur"
+								"nom={{nom_patient}}"
 							]
 						}
 					},
@@ -73,6 +118,19 @@
 				},
 				{
 					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('patient mis a jour',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -86,13 +144,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/patients/427",
+							"raw": "{{url}}/patients/{{id_patient}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"patients",
-								"427"
+								"{{id_patient}}"
 							]
 						}
 					},
@@ -100,17 +158,30 @@
 				},
 				{
 					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('patient supprimé',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/patients/427",
+							"raw": "{{url}}/patients/{{id_patient}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"patients",
-								"427"
+								"{{id_patient}}"
 							]
 						}
 					},
@@ -118,6 +189,19 @@
 				},
 				{
 					"name": "All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('patients récupéré',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -141,12 +225,32 @@
 			"item": [
 				{
 					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"prescriptions créer\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(pm.response.json().id).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"id_prescription\", jsonData.id);\r",
+									"postman.setEnvironmentVariable(\"date_start\", \"01-01-2023\");\r",
+									"postman.setEnvironmentVariable(\"date_end\", \"30-12-2023\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"datePrescription\": \"2023-11-08\",\r\n    \"medecin\": {\r\n        \"id\": 1\r\n    },\r\n    \"patient\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"datePrescription\": \"08-11-2023\",\r\n    \"medecin\": {\r\n        \"id\": 1\r\n    },\r\n    \"patient\": {\r\n        \"id\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -167,17 +271,30 @@
 				},
 				{
 					"name": "Read by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('prescription trouvé ID',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/prescriptions/315",
+							"raw": "{{url}}/prescriptions/{{id_prescription}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"prescriptions",
-								"315"
+								"{{id_prescription}}"
 							]
 						}
 					},
@@ -185,6 +302,19 @@
 				},
 				{
 					"name": "Read between dates",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('prescription trouvé dates',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -204,12 +334,25 @@
 				},
 				{
 					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('prescription mis a jour',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"datePrescription\": \"2023-11-07\",\r\n    \"medecin\": {\r\n        \"id\": 1\r\n    },\r\n    \"patient\": {\r\n        \"id\": 1\r\n    }\r\n}",
+							"raw": "{\r\n    \"datePrescription\": \"07-11-2023\",\r\n    \"medecin\": {\r\n        \"id\": 1\r\n    },\r\n    \"patient\": {\r\n        \"id\": 1\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -217,13 +360,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/prescriptions/315",
+							"raw": "{{url}}/prescriptions/{{id_prescription}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"prescriptions",
-								"315"
+								"{{id_prescription}}"
 							]
 						}
 					},
@@ -231,17 +374,30 @@
 				},
 				{
 					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('prescription supprimé',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/prescriptions/315",
+							"raw": "{{url}}/prescriptions/{{id_prescription}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"prescriptions",
-								"315"
+								"{{id_prescription}}"
 							]
 						}
 					},
@@ -249,6 +405,19 @@
 				},
 				{
 					"name": "All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('prescriptions récupéré',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -272,6 +441,24 @@
 			"item": [
 				{
 					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"medecin créer\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(pm.response.json().id).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"id_medecin\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -298,17 +485,30 @@
 				},
 				{
 					"name": "Read by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('medecin trouvé ID',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/medecins/255",
+							"raw": "{{url}}/medecins/{{id_medecin}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"medecins",
-								"255"
+								"{{id_medecin}}"
 							]
 						}
 					},
@@ -316,6 +516,19 @@
 				},
 				{
 					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('medecin mis a jour',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -329,13 +542,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/medecins/255",
+							"raw": "{{url}}/medecins/{{id_medecin}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"medecins",
-								"255"
+								"{{id_medecin}}"
 							]
 						}
 					},
@@ -343,17 +556,30 @@
 				},
 				{
 					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('medecin supprimé',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/medecins/255",
+							"raw": "{{url}}/medecins/{{id_medecin}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"medecins",
-								"255"
+								"{{id_medecin}}"
 							]
 						}
 					},
@@ -361,6 +587,19 @@
 				},
 				{
 					"name": "All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('medecins récupéré',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -384,6 +623,24 @@
 			"item": [
 				{
 					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"médicament créer\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.expect(pm.response.json().id).to.be.above(0);\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"\r",
+									"postman.setEnvironmentVariable(\"id_medicament\", jsonData.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -410,17 +667,30 @@
 				},
 				{
 					"name": "Read by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('médicament trouvé ID',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/medicaments/21",
+							"raw": "{{url}}/medicaments/{{id_medicament}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"medicaments",
-								"21"
+								"{{id_medicament}}"
 							]
 						}
 					},
@@ -428,6 +698,19 @@
 				},
 				{
 					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('médicament mis a jour',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "PUT",
 						"header": [],
@@ -441,13 +724,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{url}}/medicaments/101",
+							"raw": "{{url}}/medicaments/{{id_medicament}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"medicaments",
-								"101"
+								"{{id_medicament}}"
 							]
 						}
 					},
@@ -455,17 +738,30 @@
 				},
 				{
 					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('médicament supprimé',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{url}}/medicaments/101",
+							"raw": "{{url}}/medicaments/{{id_medicament}}",
 							"host": [
 								"{{url}}"
 							],
 							"path": [
 								"medicaments",
-								"101"
+								"{{id_medicament}}"
 							]
 						}
 					},
@@ -473,6 +769,19 @@
 				},
 				{
 					"name": "All",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test('médicaments récupéré',function(){\r",
+									"\tpm.response.to.have.status(200);\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -547,7 +856,7 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"pm.globals.set(\"url\", \"http://localhost:5000\");"
+					""
 				]
 			}
 		},
@@ -559,6 +868,13 @@
 					""
 				]
 			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5000",
+			"type": "string"
 		}
 	]
 }
