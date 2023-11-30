@@ -45,7 +45,7 @@ class PrescriptionServiceImplTest {
             patient = new Patient(null, "TEST", "NomTest", "PrenomTest", LocalDate.now(), new ArrayList<>());
             patientService.create(patient);
 
-            prescription = new Prescription(null, LocalDate.now(), medecin, patient, new ArrayList<>());
+            prescription = new Prescription(null, LocalDate.now(), medecin, patient, 0, new ArrayList<>());
             prescriptionService.create(prescription);
 
             System.out.println("création de la prescription : " + prescription);

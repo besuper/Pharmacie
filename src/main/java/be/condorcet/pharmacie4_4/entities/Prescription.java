@@ -26,7 +26,7 @@ public class Prescription {
 
     @NonNull
     @Column(name = "DATEPRESCRIPTION")
-    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+    @JsonFormat(shape=JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate datePrescription;
 
     @ManyToOne @JoinColumn(name = "ID_MEDECIN")
@@ -36,6 +36,9 @@ public class Prescription {
     @ManyToOne @JoinColumn(name = "ID_PATIENT")
     @NonNull
     private Patient patient;
+
+    @NonNull
+    private double cout_total;
 
     @JsonIgnore
     @OneToMany(mappedBy="prescription")

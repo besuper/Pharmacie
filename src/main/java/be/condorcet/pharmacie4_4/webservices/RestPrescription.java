@@ -1,6 +1,8 @@
 package be.condorcet.pharmacie4_4.webservices;
 
+import be.condorcet.pharmacie4_4.entities.Patient;
 import be.condorcet.pharmacie4_4.entities.Prescription;
+import be.condorcet.pharmacie4_4.servicies.patient.InterfacePatientService;
 import be.condorcet.pharmacie4_4.servicies.prescription.InterfacePrescriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -17,6 +19,9 @@ import java.util.List;
 public class RestPrescription {
 
     @Autowired
+    private InterfacePatientService patientService;
+
+    @Autowired
     private InterfacePrescriptionService prescriptionService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
@@ -29,6 +34,13 @@ public class RestPrescription {
     public ResponseEntity<Prescription> readById(@PathVariable(value = "id") int id) throws Exception {
         Prescription prescription = prescriptionService.read(id);
         return new ResponseEntity<>(prescription, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/patient={idPatient}", method = RequestMethod.GET)
+    public ResponseEntity<List<Prescription>> getPrescriptionsPatient(@PathVariable(value = "idPatient") int id) throws Exception {
+        Patient recherche = patientService.read(id);
+        List<Prescription> prescriptions = prescriptionService.getPrescriptions(recherche);
+        return new ResponseEntity<>(prescriptions, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{start}/{end}", method = RequestMethod.GET)
