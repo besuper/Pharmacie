@@ -2,6 +2,7 @@ package be.condorcet.pharmacie4_4.webservices;
 
 import be.condorcet.pharmacie4_4.entities.*;
 import be.condorcet.pharmacie4_4.servicies.info.InterfaceInfoService;
+import be.condorcet.pharmacie4_4.servicies.medicament.InterfaceMedicamentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +19,20 @@ public class RestInfo {
     private InterfaceInfoService infoService;
 
     /*@Autowired
-    private InterfacePrescriptionService prescriptionService;
+    private InterfacePrescriptionService prescriptionService;*/
 
     @Autowired
-    private InterfaceMedicamentService medicamentService;*/
+    private InterfaceMedicamentService medicamentService;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public ResponseEntity<Info> createInfo(@RequestBody Info info) throws Exception {
-        /*
+
         // Return values in fontend
-        Prescription tempPrescription = prescriptionService.read(info.getPrescription().getId());
+        //Prescription tempPrescription = prescriptionService.read(info.getPrescription().getId());
         Medicament tempMedicament = medicamentService.read(info.getMedicament().getId());
 
         info.setMedicament(tempMedicament);
-        info.setPrescription(tempPrescription);
-
-        System.out.println(info);*/
+        //info.setPrescription(tempPrescription);
 
         info.setId(new InfoKey(info.getMedicament().getId(), info.getPrescription().getId()));
 

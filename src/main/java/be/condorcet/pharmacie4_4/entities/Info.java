@@ -2,6 +2,8 @@ package be.condorcet.pharmacie4_4.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +19,7 @@ public class Info {
     @NonNull
     private InfoKey id;
 
-    @ManyToOne
+    @ManyToOne()
     @NonNull
     @MapsId("medicamentId")
     @JoinColumn(name = "ID_MEDICAMENT")
