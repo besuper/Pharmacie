@@ -2,11 +2,14 @@ package be.condorcet.pharmacie4_4.webservices;
 
 import be.condorcet.pharmacie4_4.entities.Patient;
 import be.condorcet.pharmacie4_4.servicies.patient.InterfacePatientService;
+import be.condorcet.pharmacie4_4.servicies.patient.PatientServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", exposedHeaders = "*")
@@ -32,6 +35,14 @@ public class RestPatient {
     @RequestMapping(value = "/nom={nom}", method = RequestMethod.GET)
     public ResponseEntity<List<Patient>> readByNom(@PathVariable(value = "nom") String nom) throws Exception {
         List<Patient> patients = patientService.read(nom);
+        return new ResponseEntity<>(patients, HttpStatus.OK);
+    }
+
+    //readPatientsByPrescriptionsDate
+    @RequestMapping(value = "/pres={date_pres}", method = RequestMethod.GET)
+    public ResponseEntity<List<Patient>> readPatientsByPrescriptionsDate(
+            @PathVariable(value = "date_pres") @DateTimeFormat(pattern = "dd-MM-yyyy") LocalDate date_pres) throws Exception {
+        List<Patient> patients = ((PatientServiceImpl)patientService).readPatientsByPrescriptionsDate(date_pres);
         return new ResponseEntity<>(patients, HttpStatus.OK);
     }
 
